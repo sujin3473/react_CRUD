@@ -4,6 +4,7 @@ const AddProduct = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [desc, setDesc] = useState("");
+  const [info, setInfo] = useState({});
 
   const onChangeName = (e) => {
     setName(e.target.value);
@@ -17,10 +18,18 @@ const AddProduct = () => {
     setDesc(e.target.value);
   };
 
+  const handleReset = () => {
+    setInfo({});
+  };
+
   const handleAdd = (e) => {
-    const data = { price, desc };
-    console.log(data);
-    localStorage.setItem(name, JSON.stringify(data));
+    alert("상품 등록이 완료되었습니다.");
+    handleReset();
+    const savedData = JSON.parse(localStorage.getItem("products"));
+    const data = { name, price, desc };
+    if (savedData !== null)
+      localStorage.setItem("products", JSON.stringify([...savedData, data]));
+    else localStorage.setItem("products", JSON.stringify([data]));
   };
 
   const onImgChange = () => {};
@@ -30,15 +39,15 @@ const AddProduct = () => {
       <h2>상품 등록</h2>
       <div className="form-control">
         <label>상품명</label>
-        <input type="text" name="name" onChange={onChangeName} />
+        <input type="text" value={info.name} onChange={onChangeName} />
       </div>
       <div className="form-control">
         <label>가격</label>
-        <input type="text" name="price" onChange={onChangePrice} />
+        <input type="text" value={info.price} onChange={onChangePrice} />
       </div>
       <div className="form-control">
         <label>상품 설명</label>
-        <input type="text" name="description" onChange={onChangeDesc} />
+        <input type="text" value={info.desc} onChange={onChangeDesc} />
       </div>
       <div className="form-control">
         <label>상품 이미지</label>
