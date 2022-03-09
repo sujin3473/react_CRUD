@@ -1,42 +1,54 @@
 import React, { useState } from "react";
 
 const AddProduct = () => {
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState(0);
-  const [desc, setDesc] = useState("");
-  const [info, setInfo] = useState({});
+  const [info, setInfo] = useState({
+    name: "",
+    price: "",
+    desc: "",
+    freeShipping: false
+  });
 
   const onChangeName = (e) => {
-    setName(e.target.value);
+    setInfo({...info, name: e.target.value});
   };
 
   const onChangePrice = (e) => {
-    setPrice(e.target.value);
+    setInfo({...info, price: e.target.value});
+
   };
 
   const onChangeDesc = (e) => {
-    setDesc(e.target.value);
+    setInfo({...info, desc: e.target.value});
+  };
+
+  const onChangeShipping = (e) => {
+    setInfo({...info, freeShipping: e.target.checked})
   };
 
   const handleReset = () => {
-    setInfo({});
+    setInfo({
+      name: "",
+      price: "",
+      desc: "",
+      freeShipping: false
+    });
   };
 
   const handleAdd = (e) => {
     alert("상품 등록이 완료되었습니다.");
     handleReset();
     const savedData = JSON.parse(localStorage.getItem("products"));
-    const data = { name, price, desc };
     if (savedData !== null)
-      localStorage.setItem("products", JSON.stringify([...savedData, data]));
-    else localStorage.setItem("products", JSON.stringify([data]));
+      localStorage.setItem("products", JSON.stringify([...savedData, info]));
+    else localStorage.setItem("products", JSON.stringify([info]));
   };
 
   const onImgChange = () => {};
 
   return (
-    <>
+    <section>
       <h2>상품 등록</h2>
+      <section>
       <div className="form-control">
         <label>상품명</label>
         <input type="text" value={info.name} onChange={onChangeName} />
@@ -50,6 +62,10 @@ const AddProduct = () => {
         <input type="text" value={info.desc} onChange={onChangeDesc} />
       </div>
       <div className="form-control">
+        <label>무료배송</label>
+        <input type="checkbox" checked={info.freeShipping} onChange={onChangeShipping} />
+      </div>
+      <div className="form-control">
         <label>상품 이미지</label>
         <input
           type="file"
@@ -58,8 +74,12 @@ const AddProduct = () => {
           onChange={onImgChange}
         />
       </div>
-      <button onClick={handleAdd}>추가</button>
-    </>
+      </section>
+      <div className="button-area">
+        <div onClick={handleReset} className="reset-button">초기화</div>
+        <div onClick={handleAdd} className="add-button">추가</div>
+      </div>      
+    </section>
   );
 };
 
