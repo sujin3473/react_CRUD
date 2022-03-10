@@ -1,9 +1,9 @@
-import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import './App.css';
+import { Route, Routes } from 'react-router-dom';
 
-import NavBar from "components/navBar";
-import AddProduct from "containers/AddProduct";
-import ProductList from "containers/ProductList";
+import NavBar from 'components/navBar';
+import AddProduct from 'containers/AddProduct';
+import ProductList from 'containers/ProductList';
 
 function App() {
   return (

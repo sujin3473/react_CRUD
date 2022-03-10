@@ -47,23 +47,23 @@ const AddProduct = () => {
     <section>
       <h2>상품 등록</h2>
       <section>
-        <div className="form-control">
+        <div className="input-control">
           <label>상품명</label>
           <input type="text" value={info.name} onChange={onChangeName} />
         </div>
-        <div className="form-control">
+        <div className="input-control">
           <label>가격</label>
-          <input type="text" value={info.price} onChange={onChangePrice} />
+          <input type="number" value={info.price} onChange={onChangePrice} />
         </div>
-        <div className="form-control">
+        <div className="input-control">
           <label>상품 설명</label>
           <input type="text" value={info.desc} onChange={onChangeDesc} />
         </div>
-        <div className="form-control">
+        <div className="input-control">
           <label>무료배송</label>
           <input type="checkbox" checked={info.freeShipping} onChange={onChangeShipping} />
         </div>
-        <div className="form-control">
+        <div className="input-control">
           <label>상품 이미지</label>
           <input type="file" name="image" accept="image/*" onChange={onImgChange} />
         </div>

@@ -4,6 +4,10 @@
   height: 100%;
 }
 
+li {
+  list-style: none;
+}
+
 section {
   padding: 40px 64px;
 }
@@ -14,16 +18,27 @@ a {
   font-weight: bold;
 }
 
-ul {
+.navBar > ul {
   display: inline;
 }
 
-li {
+.navBar > ul > li {
   font-size: 1.2em;
   display: inline;
   float: right;
   width: 100px;
   margin-right: 50px;
+}
+
+td {
+  border: none;
+}
+
+th {
+  height: 2.5em;
+  width: 100px;
+  background-color: rgb(229, 229, 229);
+  border: none;
 }
 
 label {
@@ -34,14 +49,15 @@ label {
   text-align: right;
 }
 
-input[type=text] {
+input[type='text'],
+input[type='number'] {
   width: 300px;
   height: 2em;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
-input[type=checkbox] {
+input[type='checkbox'] {
   width: 20px;
   margin-left: 0px;
   margin-right: 284px;
@@ -49,7 +65,7 @@ input[type=checkbox] {
   display: inline-block;
 }
 
-input[type=file] {
+input[type='file'] {
   width: 300px;
   height: 2em;
   border: none;
@@ -84,6 +100,23 @@ input[type=file] {
   line-height: 40px;
 }
 
+.close-button {
+  width: 30px;
+  cursor: pointer;
+}
+
+.delete-button {
+  margin: auto;
+  display: inline-block;
+  width: 90px;
+  height: 40px;
+  color: white;
+  background-color: black;
+  border: none;
+  cursor: pointer;
+  line-height: 40px;
+}
+
 .navBar-logo {
   width: 150px;
   float: left;
@@ -92,14 +125,32 @@ input[type=file] {
 
 .navBar {
   padding-top: 23px;
-  list-style-type: none;
   height: 57px;
   background-color: black;
   display: block;
   margin: 0;
 }
 
-.form-control {
+.input-control {
   position: relative;
   height: 50px;
+}
+
+.product-table {
+  margin: auto;
+  border-spacing: 0;
+}
+
+.dim {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+
+.confirm-modal {
+  z-index: 98;
 }
