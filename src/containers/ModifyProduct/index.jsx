@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const ModifyProduct = () => {
   const [info, setInfo] = useState({
@@ -34,7 +34,14 @@ const ModifyProduct = () => {
   };
 
   const handleAdd = e => {
-    alert('상품 등록이 완료되었습니다.');
+    if (!info.name) {
+      alert('상품명을 입력해주세요.');
+      return;
+    } else if (!info.price) {
+      alert('가격을 입력해주세요.');
+      return;
+    }
+    alert('상품 수정이 완료되었습니다.');
     handleReset();
     const savedData = JSON.parse(localStorage.getItem('products'));
     if (savedData !== null) localStorage.setItem('products', JSON.stringify([...savedData, info]));
@@ -45,7 +52,7 @@ const ModifyProduct = () => {
 
   return (
     <section>
-      <h2>상품 등록</h2>
+      <h2>상품 수정</h2>
       <section>
         <div className="input-control">
           <label>상품명</label>
@@ -69,11 +76,8 @@ const ModifyProduct = () => {
         </div>
       </section>
       <div className="button-area">
-        <div onClick={handleReset} className="reset-button">
-          초기화
-        </div>
         <div onClick={handleAdd} className="add-button">
-          추가
+          수정
         </div>
       </div>
     </section>

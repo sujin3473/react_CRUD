@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Product = props => {
   const { name, desc, price, freeShipping } = props.item;
@@ -19,8 +20,10 @@ const Product = props => {
       {freeShipping ? <td style={{ color: 'red' }}>○</td> : <td></td>}
       <td>
         <div className="table-button-area">
-          <div className="modify-button" onClick={handleClickDelete}>
-            수정
+          <div className="modify-button">
+            <Link to="/product/modify" onClick={handleClickDelete}>
+              수정
+            </Link>
           </div>
           <div className="delete-button" onClick={handleClickDelete}>
             삭제

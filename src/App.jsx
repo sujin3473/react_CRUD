@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import NavBar from 'components/navBar';
 import AddProduct from 'containers/AddProduct';
 import ProductList from 'containers/ProductList';
+import ModifyProduct from 'containers/ModifyProduct';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<ProductList />} />
         <Route path="/product/add" element={<AddProduct />} />
+        <Route path="/product/modify" element={<ModifyProduct />} />
       </Routes>
     </div>
   );

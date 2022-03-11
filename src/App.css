@@ -125,10 +125,14 @@ input[type='file'] {
   display: inline-block;
   width: 70px;
   height: 30px;
-  color: black;
   background-color: white;
   border: 1px solid;
   cursor: pointer;
+}
+
+.modify-button > a {
+  color: black;
+  font-weight: 300;
 }
 
 .delete-button {
