@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const AddProduct = () => {
+const ModifyProduct = () => {
   const [info, setInfo] = useState({
     name: '',
     price: '',
@@ -34,13 +34,6 @@ const AddProduct = () => {
   };
 
   const handleAdd = e => {
-    if (!info.name) {
-      alert('상품명을 입력해주세요.');
-      return;
-    } else if (!info.price) {
-      alert('가격을 입력해주세요.');
-      return;
-    }
     alert('상품 등록이 완료되었습니다.');
     handleReset();
     const savedData = JSON.parse(localStorage.getItem('products'));
@@ -87,4 +80,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default ModifyProduct;

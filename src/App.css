@@ -34,9 +34,16 @@ td {
   border: none;
 }
 
+td > div {
+  max-width: 200px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 th {
   height: 2.5em;
-  width: 100px;
+  width: 200px;
   background-color: rgb(229, 229, 229);
   border: none;
 }
@@ -71,10 +78,14 @@ input[type='file'] {
   border: none;
 }
 
+.table-button-area {
+  display: flex;
+}
+
 .button-area {
   display: flex;
   width: 220px;
-  margin: 20px auto;
+  margin: 30px auto 0px;
 }
 
 .reset-button {
@@ -101,20 +112,37 @@ input[type='file'] {
 }
 
 .close-button {
-  width: 30px;
+  width: 25px;
+  cursor: pointer;
+  display: block;
+  float: right;
+}
+
+.modify-button {
+  line-height: 30px;
+  font-size: 14px;
+  margin: auto;
+  display: inline-block;
+  width: 70px;
+  height: 30px;
+  color: black;
+  background-color: white;
+  border: 1px solid;
   cursor: pointer;
 }
 
 .delete-button {
+  line-height: 30px;
+  font-size: 14px;
   margin: auto;
   display: inline-block;
-  width: 90px;
-  height: 40px;
+  width: 70px;
+  height: 30px;
   color: white;
   background-color: black;
   border: none;
   cursor: pointer;
-  line-height: 40px;
+  line-height: 30px;
 }
 
 .navBar-logo {
@@ -143,14 +171,55 @@ input[type='file'] {
 
 .dim {
   position: fixed;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.3);
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 100;
+  z-index: 98;
 }
 
 .confirm-modal {
-  z-index: 98;
+  padding: 10px 15px 20px;
+  z-index: 99;
+  height: 130px;
+  width: 250px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+}
+
+.modal-text {
+  margin-top: 40px;
+}
+
+.cancel-button {
+  display: inline-block;
+  width: 100px;
+  height: 40px;
+  color: black;
+  background-color: white;
+  border: 1px solid black;
+  cursor: pointer;
+  line-height: 40px;
+}
+
+.confirm-button {
+  margin-left: 20px;
+  display: inline-block;
+  width: 100px;
+  height: 40px;
+  color: white;
+  background-color: black;
+  border: none;
+  cursor: pointer;
+  line-height: 40px;
+}
+
+.no-list {
+  margin-top: 80px;
+  font-size: 17px;
+  color: rgb(155, 155, 155);
 }
