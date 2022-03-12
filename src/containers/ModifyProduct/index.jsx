@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 const ModifyProduct = () => {
+  const navigate = useNavigate();
+
   const [info, setInfo] = useState({
     name: '',
     price: '',
@@ -24,13 +28,8 @@ const ModifyProduct = () => {
     setInfo({ ...info, freeShipping: e.target.checked });
   };
 
-  const handleReset = () => {
-    setInfo({
-      name: '',
-      price: '',
-      desc: '',
-      freeShipping: false,
-    });
+  const handleCancel = () => {
+    navigate(-1);
   };
 
   const handleAdd = e => {
@@ -42,10 +41,10 @@ const ModifyProduct = () => {
       return;
     }
     alert('상품 수정이 완료되었습니다.');
-    handleReset();
     const savedData = JSON.parse(localStorage.getItem('products'));
     if (savedData !== null) localStorage.setItem('products', JSON.stringify([...savedData, info]));
     else localStorage.setItem('products', JSON.stringify([info]));
+    handleCancel();
   };
 
   const onImgChange = () => {};
@@ -76,6 +75,9 @@ const ModifyProduct = () => {
         </div>
       </section>
       <div className="button-area">
+        <div onClick={handleCancel} className="reset-button">
+          취소
+        </div>
         <div onClick={handleAdd} className="add-button">
           수정
         </div>
