@@ -21,7 +21,7 @@ const Product = props => {
       <td>
         <div className="table-button-area">
           <div className="modify-button">
-            <Link to="/product/modify" onClick={handleClickDelete}>
+            <Link to={`/product/modify/${props.index}`} onClick={handleClickDelete}>
               수정
             </Link>
           </div>

@@ -48,8 +48,6 @@ const AddProduct = () => {
     else localStorage.setItem('products', JSON.stringify([info]));
   };
 
-  const onImgChange = () => {};
-
   return (
     <section>
       <h2>상품 등록</h2>
@@ -69,10 +67,6 @@ const AddProduct = () => {
         <div className="input-control">
           <label>무료배송</label>
           <input type="checkbox" checked={info.freeShipping} onChange={onChangeShipping} />
-        </div>
-        <div className="input-control">
-          <label>상품 이미지</label>
-          <input type="file" name="image" accept="image/*" onChange={onImgChange} />
         </div>
       </section>
       <div className="button-area">

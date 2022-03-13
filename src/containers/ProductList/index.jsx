@@ -23,7 +23,7 @@ const ProductList = () => {
     let arr = list;
     arr.splice(selected, 1);
     setList(arr);
-    localStorage.setItem('products', JSON.stringify([...arr]));
+    localStorage.setItem('products', JSON.stringify(arr));
   };
 
   useEffect(() => {
@@ -36,24 +36,28 @@ const ProductList = () => {
       <section>
         {list.length > 0 ? (
           <table className="product-table">
-            <tr>
-              <th>상품명</th>
-              <th>가격</th>
-              <th>상품 설명</th>
-              <th>무료배송</th>
-              <th></th>
-            </tr>
-            {list.map((item, index) => {
-              return (
-                <Product
-                  item={item}
-                  key={index}
-                  index={index}
-                  openModal={openModal}
-                  setSelected={handleSetSelected}
-                />
-              );
-            })}
+            <thead>
+              <tr>
+                <th>상품명</th>
+                <th>가격</th>
+                <th>상품 설명</th>
+                <th>무료배송</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {list.map((item, index) => {
+                return (
+                  <Product
+                    item={item}
+                    key={index}
+                    index={index}
+                    openModal={openModal}
+                    setSelected={handleSetSelected}
+                  />
+                );
+              })}
+            </tbody>
           </table>
         ) : (
           <div className="no-list">
@@ -66,6 +70,7 @@ const ProductList = () => {
           closeModal={closeModal}
           isOpenModal={isOpenModal}
           deleteProduct={handleDeleteProduct}
+          type="delete"
         />
       )}
     </section>

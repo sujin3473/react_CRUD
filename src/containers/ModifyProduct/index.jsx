@@ -1,16 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import ConfirmModal from 'components/confirmModal';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const ModifyProduct = () => {
   const navigate = useNavigate();
+  const params = useParams();
 
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [list, setList] = useState([]);
   const [info, setInfo] = useState({
     name: '',
     price: '',
     desc: '',
     freeShipping: false,
   });
+
+  const openModal = () => {
+    setIsOpenModal(true);
+  };
+
+  const closeModal = () => {
+    setIsOpenModal(false);
+  };
 
   const onChangeName = e => {
     setInfo({ ...info, name: e.target.value });
@@ -32,7 +44,7 @@ const ModifyProduct = () => {
     navigate(-1);
   };
 
-  const handleAdd = e => {
+  const handleModify = e => {
     if (!info.name) {
       alert('상품명을 입력해주세요.');
       return;
@@ -40,14 +52,21 @@ const ModifyProduct = () => {
       alert('가격을 입력해주세요.');
       return;
     }
-    alert('상품 수정이 완료되었습니다.');
-    const savedData = JSON.parse(localStorage.getItem('products'));
-    if (savedData !== null) localStorage.setItem('products', JSON.stringify([...savedData, info]));
-    else localStorage.setItem('products', JSON.stringify([info]));
+    setIsOpenModal(false);
+    let arr = list;
+    arr.splice(params.idx, 1, info);
+    setList(arr);
+    localStorage.setItem('products', JSON.stringify(arr));
     handleCancel();
   };
 
-  const onImgChange = () => {};
+  useEffect(() => {
+    if (localStorage.getItem('products')) setList(JSON.parse(localStorage.getItem('products')));
+  }, []);
+
+  useEffect(() => {
+    if (list.length > 0) setInfo(list[params.idx]);
+  }, [list, params]);
 
   return (
     <section>
@@ -69,19 +88,23 @@ const ModifyProduct = () => {
           <label>무료배송</label>
           <input type="checkbox" checked={info.freeShipping} onChange={onChangeShipping} />
         </div>
-        <div className="input-control">
-          <label>상품 이미지</label>
-          <input type="file" name="image" accept="image/*" onChange={onImgChange} />
-        </div>
       </section>
       <div className="button-area">
         <div onClick={handleCancel} className="reset-button">
           취소
         </div>
-        <div onClick={handleAdd} className="add-button">
+        <div onClick={openModal} className="add-button">
           수정
         </div>
       </div>
+      {isOpenModal && (
+        <ConfirmModal
+          closeModal={closeModal}
+          isOpenModal={isOpenModal}
+          modifyProduct={handleModify}
+          type="modify"
+        />
+      )}
     </section>
   );
 };
