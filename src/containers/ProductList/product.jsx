@@ -20,11 +20,9 @@ const Product = props => {
       {freeShipping ? <td style={{ color: 'red' }}>○</td> : <td></td>}
       <td>
         <div className="table-button-area">
-          <div className="modify-button">
-            <Link to={`/product/modify/${props.index}`} onClick={handleClickDelete}>
-              수정
-            </Link>
-          </div>
+          <Link to={`/product/modify/${props.index}`} onClick={handleClickDelete}>
+            <div className="modify-button">수정</div>
+          </Link>
           <div className="delete-button" onClick={handleClickDelete}>
             삭제
           </div>
